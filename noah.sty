@@ -1,0 +1,104 @@
+\ProvidesPackage{noah}[my commands]
+
+\title{}
+\author{Noah Walsh}
+\date{\today}
+%% Traditional LaTeX or TeX follows...
+% ...
+\usepackage{indentfirst}
+\usepackage[inline]{asymptote}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{pgfplots}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=blue,  %choose some color if you want links to stand out
+}
+
+\pgfplotsset{compat=newest}
+\usetikzlibrary{shapes.geometric,arrows,fit,matrix,positioning}
+\tikzset
+{
+    treenode/.style = {circle, draw=black, align=center, minimum size=1cm},
+    subtree/.style  = {isosceles triangle, draw=black, align=center, minimum height=0.5cm, minimum width=1cm, shape border rotate=90, anchor=north}
+}
+
+\setlength{\parskip}{0.5em}
+
+\newcounter{probnum}
+\stepcounter{probnum}
+\newcommand{\numproblem}[1][]{
+\vspace{2em}
+\large\textbf{Problem \theprobnum} \ifthenelse{\equal{#1}{}}{}{\textbf{(#1)}}\par\normalsize%\ifx#1\empty\else \textbf{(#1)}\fi\par\normalsize
+%commented-out code caused extraordinarily weird behavior (e.g. outputting Problem 2 instead of Problem 2 (11) when using \numproblem[11] as the second problem)
+\stepcounter{probnum}
+}
+\newcommand{\problem}[1][]{
+    \vspace{2em}
+    \large \textbf{Problem #1}\par\normalsize
+}
+
+\newcommand{\imp}[1]{
+    {\color{red} #1} \hspace{-0.5em}
+}
+
+\newcommand{\defin}[1]{
+    {\color{blue} \textbf{#1}} \hspace{-0.5em}
+}
+
+\newcommand{\unsure}[1]{
+    {\color{green} #1} \hspace{-0.5em}
+}
+
+\newcommand{\funny}[1]{
+    {\color{purple} #1} \hspace{-0.5em}
+}
+
+\newcommand{\eps}{\varepsilon}
+% ...
+\newcommand{\ol}[1]{\overline{#1}}
+
+\newcommand{\bb}[1]{\mathbb{#1}}
+
+\newcommand{\pair}[2]{
+    \left\langle #1 \, , \, #2\right\rangle
+}
+
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\Adj}{Adj}
+\DeclareMathOperator{\mathspan}{span}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\Gal}{Gal}
+
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\unlistedsection}[1]{
+    \section*{#1}
+    \addcontentsline{toc}{section}{#1}
+}
+
+\newenvironment{alphenum}{
+    \begin{enumerate}[label=(\alph*)]
+}{
+    \end{enumerate}
+}
+
+\allowdisplaybreaks
+
+\newtheorem{corollary}{Corollary}
