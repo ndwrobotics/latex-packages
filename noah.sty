@@ -17,6 +17,7 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{pgfplots}
+\usepackage{tikz-cd}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -35,6 +36,13 @@
 
 \setlength{\parskip}{0.5em}
 
+
+
+\newcounter{probcounter} % Reset every time a problem command is used. Used to e.g. keep lemma numbering sensible.
+
+
+\newtheorem{lemma}{Lemma}[probcounter]
+
 \newcounter{probnum}
 \stepcounter{probnum}
 \newcommand{\numproblem}[1][]{
@@ -42,10 +50,13 @@
 \large\textbf{Problem \theprobnum} \ifthenelse{\equal{#1}{}}{}{\textbf{(#1)}}\par\normalsize%\ifx#1\empty\else \textbf{(#1)}\fi\par\normalsize
 %commented-out code caused extraordinarily weird behavior (e.g. outputting Problem 2 instead of Problem 2 (11) when using \numproblem[11] as the second problem)
 \stepcounter{probnum}
+\stepcounter{probcounter}
 }
 \newcommand{\problem}[1][]{
     \vspace{2em}
     \large \textbf{Problem #1}\par\normalsize
+    \renewcommand{\thelemma}{1}
+	\stepcounter{probcounter}
 }
 
 \newcommand{\imp}[1]{
@@ -69,6 +80,7 @@
 \newcommand{\ol}[1]{\overline{#1}}
 
 \newcommand{\bb}[1]{\mathbb{#1}}
+\let\frk\mathfrak
 
 \newcommand{\pair}[2]{
     \left\langle #1 \, , \, #2\right\rangle
@@ -85,8 +97,9 @@
 \DeclareMathOperator{\Mat}{Mat}
 \DeclareMathOperator{\trace}{trace}
 \DeclareMathOperator{\Gal}{Gal}
-
-\newtheorem{lemma}{Lemma}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Ann}{Ann}
 
 \newcommand{\unlistedsection}[1]{
     \section*{#1}
