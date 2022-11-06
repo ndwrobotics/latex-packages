@@ -5,21 +5,32 @@
 \date{\today}
 %% Traditional LaTeX or TeX follows...
 % ...
-\usepackage{indentfirst}
-\usepackage[inline]{asymptote}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{enumitem}
-\usepackage{color}
-\usepackage{listings}
-\usepackage{float}
-\usepackage{graphicx}
-\usepackage{array}
-\usepackage{pgfplots}
-\usepackage{tikz-cd}
+\RequirePackage{indentfirst}
+\RequirePackage[inline]{asymptote}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{enumitem}
+\RequirePackage{color}
+\RequirePackage{listings}
+\RequirePackage{float}
+\RequirePackage{graphicx}
+\RequirePackage{array}
+\RequirePackage{pgfplots}
+\RequirePackage{tikz-cd}
+\RequirePackage{ifthen}
 
-\usepackage{hyperref}
+
+\RequirePackage{hyperref}
+
+\newboolean{provides-math}
+\setboolean{provides-math}{true}
+
+
+\DeclareOption{no-math}{\setboolean{provides-math}{false}}
+
+\ProcessOptions\relax
+
 \hypersetup{
     colorlinks=true, %set true if you want colored links
     linktoc=all,     %set to all if you want both sections and subsections linked
@@ -87,6 +98,9 @@
 }
 
 
+
+
+\ifthenelse{\boolean{provides-math}}{
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\Ima}{Im}
 \DeclareMathOperator{\Adj}{Adj}
@@ -100,6 +114,15 @@
 \DeclareMathOperator{\Frac}{Frac}
 \DeclareMathOperator{\rad}{rad}
 \DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\MSpec}{MSpec}
+\DeclareMathOperator{\mchar}{char}
+}{}
+
+
 
 \newcommand{\unlistedsection}[1]{
     \section*{#1}
@@ -110,6 +133,12 @@
     \begin{enumerate}[label=(\alph*)]
 }{
     \end{enumerate}
+}
+
+\newenvironment{romenum}{
+	\begin{enumerate}[label=(\roman*)]
+}{
+	\end{enumerate}
 }
 
 \allowdisplaybreaks
